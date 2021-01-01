@@ -1,70 +1,15 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# node-bird
+## next.js 역활
+### 전통적인 방법
+- 프론트 서버에서 백엔트 서버의 데이터를 받구 프론트에서 데이터를 가지구 화면과 함께 브라우저에게 전달
+- 한번에 화면을 그려주지만 단점은 화면 그려주는 시간이 길어진다.
+### 리액트 뷰 등 싱글페이지애플리케이션
+- 데이터 없이 화면만 받구(프론트에서) 백엔드에서 직접 데이터를 받는다 브라우저에서
+- 화면을 먼저 그려주고 로딩창을 띄어서 그동안 백엔드에서 데이터를 받아서 그려준다
+- 앞으로 바뀔거에 대한 화면까지 받아오기 때문에 시간이 더 걸릴수 잇지만 먼저 화면에 그려주기때문에 
+사용자 입장에선 더 좋을수도! 사용자가 빠르게 인터랙션이 필요할때 주로 사용
+### 서버사이드 랜더링 :  검색을 위해서
+1. 프리랜더 :  검색엔진이라구 미리 파악해서 구분해서 보내준다
+2. 서버사이드 랜더링 : 첫방문만 전통적인 방식으로 하구 그다음 페이지 전환일때는 리액트 방식이으로
+<br> 하이브리드 방식
+=> 어드민페이지를 사용할때는 검색 엔진에 노출 안되두 되기에 굳이 서버사이드 렌더링 방식을 안해두 된다

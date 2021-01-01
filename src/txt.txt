@@ -1,0 +1,82 @@
+반복문을 쓰면
+컴포넌트로 나누자
+
+컨트롤 + 비
+
+리액트 최적화
+setState만 호출만 해두 랜더링됨
+shouldComponentUpdate로 업데이트 할 경우를 적어둔다 => 랜더링 커스텀 할때마니 쓰임 
+
+shouldComponentUpdate를 자동으로 구현 
+=>pureComnenent [=== 훅은 memo 로 감싸줘라 ] 
+대신 객체나 참조 는 판단은 힘듬
+자동으로 바뀌는걸 랜더링 한다
+객체안에 배열
+배열안에 객체를 피해라
+
+방법1
+inputRef = creatRef();
+this.inputRef .current.focus();
+ref={this.inputRef}
+
+방법2
+함수방법
+inputRef = (c)=>{}
+this.inputRef.focus();
+ref={this.inputRef}
+
+함수형일때는 
+constror일때 props를 받으면
+바로 필터 사용이 가능
+거기서 가공이 가능
+
+jsx애서 null 은 태그가 없는걸 말하는것
+jsx안에서 복작한 로직은 함수로 따로 빼서 리턴하면 된다
+=> 이거보다는 새로운 컴포넌트로 빼는게좋긴하다
+
+훅에서 useRef(화면에 영향 x)는 값이 바뀌는 하지만 화면에는 
+영향이 끼지치 않을때 사영(변수로) 랜더링 안될때
+
+
+함수안에선 if, for. 다가눙
+
+라이프사이클
+랜더 함ㅁ수가 돌아가면서 돔ㅇ 붙어지면서 딱 실행할수 잇는 함수
+랜더가 처음 
+coponenDidmoint() 실행
+componrnttunWillmoint  컴포넌트가 제거되기 직전
+
+didupdate
+
+
+
+ onClick={onClickBtn('바위')}>
+const onClickBtn = (choice) => (A) => {}
+=>메서드에서 A부분에 화살표 함수 한번더 넣어주면 온클릭부분에 화살표 지워줄수 잇음
+이게 고차함수
+
+//함수 컴포넌트 안에서
+// 함수는 컴포넌트 매번 다시 실행
+// useEffect 여러번 사용도 가능
+useEffect(()=>{ // componentDidMount, componentDidUpdate 역할(1대1 대응은 아님)
+ console.log('다시 실행');
+    interval.current = setInterval(changeHand, 100);  
+return () => { // componentWillUnmount 역할
+      console.log('종료');
+      clearInterval(interval.current);
+    }
+  }, [imgCoord]); // 두번째 인수 배열에 넣은값들이 바꿀때 useEffect가ㅏ 실행
+// 두번재인자가 없으면 처음에만 바뀌는게 신걍쓰거 그이후에느느 노신경
+
+디스패치(액션)
+액션을 해셕해서 스테이트 값을 바궈즈는게 리듀서
+어떻게 바뀔지는 리듀서
+액션이름은 변수로 상수로 빼두고  
+dispacth(
+type:CLICK_CELL
+row:1
+cell1
+)  =========>  디스패치한다 방금 만든 액션임 액션타입은 클릭셀이고 로우값1셀값1을 디스패치할꺼임
+그럼 리듀서에서 같은 타입의 이름 찾아서 
+const tableData = [...state.tableData]//기존의스테이ㅡ 얉은복사후
+tableData[action.row] = [...tableData[action.row] ]
