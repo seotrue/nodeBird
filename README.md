@@ -13,3 +13,29 @@
 2. 서버사이드 랜더링 : 첫방문만 전통적인 방식으로 하구 그다음 페이지 전환일때는 리액트 방식이으로
 <br> 하이브리드 방식
 => 어드민페이지를 사용할때는 검색 엔진에 노출 안되두 되기에 굳이 서버사이드 렌더링 방식을 안해두 된다
+
+## 준비사항
+1. 넥스트 설치
+> npm i next@9 // 버젼은 @로 
+
+2. ant디자인 설치
+
+3. eslint : 코드 규칙<br>
+D는 개발모드
+> npm i eslint -D 
+<br>
+> npm i eslint-plugin-import -D
+<bt>
+> npm i eslint-plugin-react -D
+<Br>
+> npm i eslint-plugin-hooks -D
+
+<br>
+설치 후  .eslintrc 파일을 만들어주고 해당 규칙을 기재해준다 <br>
+그리고 eslint의 대한 에디터 설정두 해준다
+
+## next.js의 특징
+1. 넥스트는 라우팅을 알아서 해준다
+- 동적 라이팅 기능이 추가되었다.
+
+
