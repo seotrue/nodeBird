@@ -3,6 +3,9 @@ import {Button, Form, Input} from 'antd'
 import styled from "styled-components";
 import {Link} from "next/link";
 import PropTypes from "prop-types";
+import {useDispatch} from "react-redux";
+import {loginAction} from "../reducers";
+import useinput from "../hook/useinput";
 
 
 // 스타일드 컴포넌트
@@ -14,21 +17,18 @@ const FormWrapper = styled(Form)`
     padding:10px
 `
 
-const LoginForm = ({setIsLoggedIn}) =>{
-    const [id,setId] = useState('');
-    const  [password,setPassword] = useState('');
+const LoginForm = () =>{
+    // 액션을 디스패치
+    const dispatch = useDispatch();
+    const [id,onChangeId] = useinput('');
+    const  [password,onChangePassword] = useinput('');
 
     const style = useMemo(()=>({  marginTop:'10px'}),[])
 
-    const onChangeId = useCallback((e)=>{
-        setId(e.target.value)
-    },[])
-    const onChangePassword = useCallback((e)=>{
-        setPassword(e.target.value)
-    },[])
+
     const onSubmitForm = useCallback(()=>{
         console.log(id,password)
-        setIsLoggedIn(true)
+        dispatch(loginAction())
     } ,[id, password])
 
     // const style = useMemo({marginTop:'10px'},[])
@@ -61,7 +61,5 @@ const LoginForm = ({setIsLoggedIn}) =>{
         </FormWrapper>
     )
 }
-LoginForm.propTypes = {
-    setIsLoggedIn : PropTypes.func.isRequired
-}
+
 export default LoginForm
