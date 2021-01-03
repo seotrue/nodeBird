@@ -8,7 +8,6 @@ const configureStore = ()=>{
     return store
 }
 const wrapper = createWrapper(configureStore,{
-
     debug : process.env.NODE_ENV === 'development' //  개발 봄드면 디버그 설명이 잘 나옴
 })
 export  default  wrapper
