@@ -50,4 +50,7 @@
 dispatch(loginAction(false))  // 디스패치에 액션으 담아서
 2. const isLoggedIn =useSelector((state)=>{state.user.isLoggedIn})  // //state.user.isLoggedIn은 중앙 저장소에 잇는 데이터
 
-## git rebase -i를 해보기 위해 해당 줄 삽입
+## 미들웨어
+웹브라우저와 리덕스 연결
+> npm i redux-devtools-extension
+
