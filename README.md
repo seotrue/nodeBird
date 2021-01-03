@@ -23,12 +23,9 @@
 3. eslint : 코드 규칙<br>
 D는 개발모드
 > npm i eslint -D 
-<br>
 > npm i eslint-plugin-import -D
-<bt>
 > npm i eslint-plugin-react -D
-<Br>
-> npm i eslint-plugin-hooks -D
+> npm i eslint-plugin-react-hooks
 
 <br>
 설치 후  .eslintrc 파일을 만들어주고 해당 규칙을 기재해준다 <br>
