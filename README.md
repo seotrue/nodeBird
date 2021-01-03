@@ -16,7 +16,16 @@
 
 ## 준비사항
 1. 넥스트 설치
+> npm init 
 > npm i next@9 // 버젼은 @로 
+<Br>
+
+    "scripts": {
+        "dev": "next"
+      },
+      
+<br>
+> npm i react react-dom
 
 2. ant디자인 설치
 > npm i antd styled-components @ant-design/icons
@@ -28,7 +37,7 @@ D는 개발모드
 <bt>
 > npm i eslint-plugin-react -D
 <Br>
-> npm i eslint-plugin-hooks -D
+> npm i eslint-plugin-react-hooks -D
 
 <br>
 설치 후  .eslintrc 파일을 만들어주고 해당 규칙을 기재해준다 <br>

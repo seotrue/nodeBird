@@ -12,7 +12,7 @@ const AppLayout =({children}) => {
     // 일부 페이지들의 공통적인 부분을 여기서 해결
     // isLoggedIn 값이 바뀌면 appLayout 애들이 알아서 리랜더링
     //state.user.isLoggedIn은 중앙 저장소에 잇는 데이터
-    const { isLoggedIn } = useSelector(state => state.user.isLoggedIn);
+    const { isLoggedIn } = useSelector(state => state.user);
     return(
         <div>
             <Menu mode={'horizontal'}>
@@ -22,7 +22,7 @@ const AppLayout =({children}) => {
                 </Menu.Item>
                 <Menu.Item>
                     <Link href="/profile"><a>프로필</a></Link>
-                 </Menu.Item>
+                </Menu.Item>
                 <Menu.Item>
                     <Input.Search enterButton style={{verticalAlign:'middle'}}/>
                 </Menu.Item>
@@ -35,7 +35,7 @@ const AppLayout =({children}) => {
                     {isLoggedIn ? <UserProfile /> : <LoginForm />}
                 </Col>
                 <Col xs={24} xd={12} >
-                {children}
+                    {children}
                 </Col>
                 <Col xs={24} xd={6}>
                     오른쪽메뉴

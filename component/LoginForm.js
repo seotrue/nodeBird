@@ -1,10 +1,10 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {Button, Form, Input} from 'antd'
 import styled from "styled-components";
 import {Link} from "next/link";
-import PropTypes from "prop-types";
+
 import {useDispatch} from "react-redux";
-import {loginAction} from "../reducers";
+import {loginAction} from "../reducers/user";
 import useinput from "../hook/useinput";
 
 
