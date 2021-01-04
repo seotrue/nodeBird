@@ -1,6 +1,7 @@
-import  React from 'react'
+import React from 'react'
 import {Button, Card, List} from 'antd'
 import StopOutlined from "@ant-design/icons/lib/icons/StopOutlined";
+
 const FollowList = ({header, data}) =>{
  return(
      <List

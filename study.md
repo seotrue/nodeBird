@@ -48,6 +48,40 @@
 ## hooks 의 리더스 
 1. const dispatch = useDispatch();  // 디스 패치 할때
 dispatch(loginAction(false))  // 디스패치에 액션으 담아서
-2. const isLoggedIn =useSelector((state)=>{state.user.isLoggedIn})  // //state.user.isLoggedIn은 중앙 저장소에 잇는 데이터
 
+2. const isLoggedIn =useSelector((state)=>{state.user.isLoggedIn})  // //state.user.isLoggedIn은 중앙 저장소에 잇는 데이터
+=> 중앙 저장소에서 받아올뗀 useSelector 사용
 ## git rebase -i를 해보기 위해 해당 줄 삽입
+
+#
+    /*
+    커스텀 훅
+    중복 되는 부분을 커스텀 훅으로 만드다.
+    */
+    import {useCallback, useState} from 'react'
+    
+    export default(initialValue = null)=>{
+        const [value,setValue] = useState(initialValue)
+        const handler = useCallback((e) => {
+                setValue(e.target.value)
+            },[input])
+            return [value,handler]
+    }
+    
+    #// 컴포넌트에 프랍스로 넘겨주는 함수는 useCallback을 써라
+
+## 컴포넌트 구성 시
+1. 일단 컴포넌트를 나눠준다
+2. 해당 컴포넌트는 만들어준다   
+## anted
+1. card 사용시
+엔티드에서 카드의 기능중 cover :  이미지 커버
+액션 :  버튼과 해당 기능을 넣어줌
+배열안에 jsx 넣을려면 key를 넣어줘야한다.
+2. Card.meta  :  게시글 부분 
+## propType 작성시
+1. object 의 경우 shape()으로 구체적으로 작성 가능
+
+## 옵셔널 체이닝 연사자
+me?.id me가 잇으면id 리턴 없으면 언디파인
+기존 me && id
