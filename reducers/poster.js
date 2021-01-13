@@ -1,5 +1,5 @@
 export const initialState = {
-    mainPosts: [{
+        mainPosts: [{
         id: 1,
         User: {
             id: 1,
@@ -29,7 +29,7 @@ export const initialState = {
     postAdded: false,
 };
 
-const ADD_POST = 'ADD_POST';
+export const ADD_POST = 'ADD_POST';
 
 export const addPost = {
     type:ADD_POST,
@@ -50,7 +50,8 @@ export default  (state=initialState,action)=>{
         case ADD_POST :{
             return{
                 ...state,
-                mainPosts: [...dummyPost,...state.mainPosts]
+                mainPosts: [dummyPost,...state.mainPosts],
+                postAdded: true,
             }
         }
         default :

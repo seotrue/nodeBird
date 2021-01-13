@@ -1,10 +1,10 @@
-// const dummyUser = {
-//     id: 1,
-//     nickname: '제로초',
-//     Posts: [],
-//     Followings: [],
-//     Followers: [],
-// };
+const dummyUser = {
+    id: 1,
+    nickName: '제로초',
+    Posts: [],
+    Followings: [],
+    Followers: [],
+};
 export const initialState ={
     isLoggedIn :false,
     me :null,
@@ -12,10 +12,12 @@ export const initialState ={
     loginData:{}
 }
 
+export const LOG_IN ='LOG_IN'
+
 // 액션 함수
 export const loginAction = (data)=>{
     return{
-        type:'Log_IN',
+        type:LOG_IN,
         data
     }
 }
@@ -28,13 +30,14 @@ export const logoutAction = ()=>{
 
 export default  (state=initialState,action)=>{
     switch (action.type) {
-        case'LOG-IN':
+        case LOG_IN:
             return{
                 ...state,
+                isLoggedIn: true,
                 me:{
                     ...state.me,
-                    isLoggedIn: true,
-                    me: action.data
+
+                    me: dummyUser
                 }
             }
         case'LOG-OUT':

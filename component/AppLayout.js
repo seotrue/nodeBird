@@ -12,6 +12,7 @@ const AppLayout =({children}) => {
     // isLoggedIn 값이 바뀌면 appLayout 애들이 알아서 리랜더링
     //state.user.isLoggedIn은 중앙 저장소에 잇는 데이터
     const { isLoggedIn } = useSelector(state => state.user);
+    console.log(isLoggedIn,'isLoggedIn')
     return(
         <div>
             <Menu mode={'horizontal'}>

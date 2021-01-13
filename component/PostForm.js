@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addPost} from "../reducers/poster";
 
 const PostForm = ()  =>{
-    const {imagePaths} = useSelector((state)=>state.post)
+    const {imagePaths} = useSelector((state)=>state.poster)
     const [text,setText] = useState('')
     const dispatch = useDispatch()
 
@@ -32,7 +32,7 @@ const PostForm = ()  =>{
                 {imagePaths.map((v)=>{
                     return(
                         <div key={v} style={{ display: 'inline-block' }}>
-                            <img src={v} style={{ width: '200px' }} alt={v} />
+                            <img src={'http://localhost:3065/' + v} style={{ width: '200px' }} alt={v} />
                             <div>
                                 <Button>제거</Button>
                             </div>
