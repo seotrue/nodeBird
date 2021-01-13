@@ -1,5 +1,6 @@
-import React,{useMemo} from  'react'
+import React, {useMemo} from 'react'
 import {Form, Input} from "antd";
+
 const NicknameEditForm = () =>{
     const style = useMemo(()=>({ marginBottom:'20px'}),[])
     return (

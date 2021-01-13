@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react'
 import AppLayout from "../component/AppLayout";
 import Head from "next/head";
-import {Form, Input,Checkbox, Button} from 'antd';
-import styled from  'styled-components'
+import {Button, Checkbox, Form, Input} from 'antd';
+import styled from 'styled-components'
 import useInput from "../hook/useinput";
 
 const ErrorMessage = styled.div`
