@@ -1,11 +1,12 @@
 import React, {useCallback} from 'react'
 import {Avatar, Button, Card} from "antd";
 
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logoutAction} from "../reducers/user";
 
 
 const UserProfile = ()=>{
+    const {nickName} = useSelector(state=>state.user)
     const dispatch = useDispatch();
     const onLogOut = useCallback(()=>{
         dispatch(logoutAction(false))
@@ -19,8 +20,8 @@ const UserProfile = ()=>{
                     <div key={'follower'}>팔로워<br/>0</div>
                 ]}>
                 <Card.Meta
-                    aveter={<Avatar>Sol</Avatar>}
-                    title='sol'
+                    aveter={<Avatar>sol</Avatar>}
+                    title={nickName}
                 />
             </Card>
 

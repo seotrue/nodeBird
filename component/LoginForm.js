@@ -28,7 +28,10 @@ const LoginForm = () =>{
 
     const onSubmitForm = useCallback(()=>{
         console.log(id,password)
-        dispatch(loginAction())
+        dispatch(loginAction({
+            id,
+            password,
+        }))
     } ,[id, password])
 
     // const style = useMemo({marginTop:'10px'},[])
@@ -52,12 +55,10 @@ const LoginForm = () =>{
                 />
             </div>
             <ButtonWrapper style={style}>
-                <Button type={"primary"} htmlType={'submit'} loading={false}>
-                    로그인
-                </Button>
-                <Link href={'/signup'}><a><Button/>회원가입</a></Link>
+                <Button type={"primary"} htmlType={'submit'} loading={false}>로그인</Button>
+                <Link href={'/signup'}><a>회원가입</a></Link>
             </ButtonWrapper>
-            <div></div>
+
         </FormWrapper>
     )
 }

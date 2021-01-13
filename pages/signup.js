@@ -54,10 +54,10 @@ const Signup = ()  =>{
                 <div>
                     <label htmlFor="user-password">비밀번호</label>
                     <br/>
-                    <Input htmlFor="user-password" value={password} requied onChange={onChangePassword}/>
+                    <Input type="password" htmlFor="user-password" value={password} requied onChange={onChangePassword}/>
                 </div>
                 <div>
-                    <label htmlFor="user-passwordCheck">비밀번호확인</label>
+                    <label type="password" htmlFor="user-passwordCheck">비밀번호확인</label>
                     <br/>
                     <Input htmlFor="user-passwordCheck" value={passwordCheck} requied onChange={onChangePasswordCheck}/>
                    { passwordError && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
