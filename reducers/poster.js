@@ -45,7 +45,7 @@ const dummyPost = {
     Images: [],
     Comments: [],
 };
-export default (state=initialState,action)=>{
+export default  (state=initialState,action)=>{
     switch (action.type) {
         case ADD_POST :{
             return{

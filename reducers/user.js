@@ -1,13 +1,13 @@
-const dummyUser = {
-    id: 1,
-    nickname: '제로초',
-    Posts: [],
-    Followings: [],
-    Followers: [],
-};
+// const dummyUser = {
+//     id: 1,
+//     nickname: '제로초',
+//     Posts: [],
+//     Followings: [],
+//     Followers: [],
+// };
 export const initialState ={
     isLoggedIn :false,
-    user :null,
+    me :null,
     signUpData : {},
     loginData:{}
 }
@@ -31,19 +31,19 @@ export default  (state=initialState,action)=>{
         case'LOG-IN':
             return{
                 ...state,
-                user:{
-                    ...state.user,
+                me:{
+                    ...state.me,
                     isLoggedIn: true,
-                    user: action.data
+                    me: action.data
                 }
             }
         case'LOG-OUT':
             return{
                 ...state,
-                user:{
-                    ...state.user,
+                me:{
+                    ...state.me,
                     isLoggedIn: false,
-                    user:null
+                    me:null
                 }
             };
         default :
