@@ -3,7 +3,7 @@ import { Card, Button, Avatar, Popover, List, Comment } from 'antd';
 import PropTypes from 'prop-types';
 import { RetweetOutlined, HeartTwoTone, HeartOutlined, MessageOutlined, EllipsisOutlined } from '@ant-design/icons';
 import {useSelector} from "react-redux";
-
+import Link from 'next/link';
 
 import PostImages from "./PostImages";
 import CommentForm from "./CommentForm";
@@ -20,12 +20,15 @@ const PostCard = ({post})  =>{
     //const  {id} = useSelector(state=> state.user.me?.id)// 옵셔널 체이닝 연산자
     const id = useSelector((state) => state.user.me && state.user.me.id);
     const [liked, setLiked] = useState(false)
+    const [commentFormOpened,setCommentFormOpened] = useState(false);
 
     const onToggleLike = useCallback(() => {
         setLiked((prev) => !prev);
     }, []);
 
-    const onToggleComment = useCallback(()=>{},[])
+    const onToggleComment = useCallback(()=>{
+        setCommentFormOpened((prev) => !prev)
+    },[])
     return(
         <CardWrapper>
             <Card
@@ -56,14 +59,35 @@ const PostCard = ({post})  =>{
                 ]}
                 extra={<FollowButton post={post} />}
             >
-
-
                 <Card.Meta
                     avatar={<Avatar>{post.User.nickname[0]}</Avatar>} //post.User.nickname[0] 닉네임의 첫번째 글자
                     title={post.User.nickname}
-                    description={<PostCardContent content={post.content}/>}
+                    description={<PostCardContent postData={post.content}/>}
                 />
             </Card>
+            {commentFormOpened && (
+                <>
+                    <CommentForm post={post} />
+                    <List
+                        header={`${post.Comments.length}개의 댓글`}
+                        itemLayout="horizontal"
+                        dataSource={post.Comments}
+                        renderItem={(item) => (
+                            <li>
+                                <Comment
+                                    author={item.User.nickname}
+                                    avatar={(
+                                        <Link href={{ pathname: '/user', query: { id: item.User.id } }} as={`/user/${item.User.id}`}>
+                                            <a><Avatar>{item.User.nickname[0]}</Avatar></a>
+                                        </Link>
+                                    )}
+                                    content={item.content}
+                                />
+                            </li>
+                        )}
+                    />
+                </>
+            )}
     </CardWrapper>
     )
 }

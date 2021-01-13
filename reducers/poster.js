@@ -13,17 +13,16 @@ export const initialState = {
         }, {
             src: 'https://gimg.gilbut.co.kr/book/BN001998/rn_view_BN001998.jpg',
         }],
-        Comments: [{
-            User: {
-                nickname: 'nero',
+        Comments: [
+            {
+                User: {nickname: 'nero',},
+                content: '우와 개정판이 나왔군요~',
             },
-            content: '우와 개정판이 나왔군요~',
-        }, {
-            User: {
-                nickname: 'hero',
-            },
-            content: '얼른 사고싶어요~',
-        }]
+            {
+                User: {nickname: 'hero',},
+                content: '얼른 사고싶어요~',
+            }
+        ]
     }],
     imagePaths: [],
     postAdded: false,
@@ -40,7 +39,7 @@ const dummyPost = {
     content: '더미데이터입니다.',
     User: {
         id: 1,
-        nickname: '제로초',
+        nickname: 'ol',
     },
     Images: [],
     Comments: [],
