@@ -91,3 +91,38 @@ me?.id me가 잇으면id 리턴 없으면 언디파인
 => 반복된다 지겹도록 그럼 줄이는 방법
 
 -포로타입은 점겅도구는 귀찮아두 잘하자! 그래야 서비스가 안정화 
+
+
+## createGlobalStyle  글로벌 스타일드
+- 제공 되어지는 자동 클래스명이 붙은 애들을 커스텀하게 디자인 해줄수 있다  
+ ```
+    mport { CloseOutlined } from '@ant-design/icons';
+    
+    const Global = createGlobalStyle`
+      .slick-slide {
+        display: inline-block;
+      }
+      .ant-card-cover {
+        transform: none !important;
+      }
+    `
+    <Global/> // 아무곳에서 사용가능
+```
+
+### 정규표현식
+- 해시태그 찾는 정규표현식 => /(#[^\s#]+)/g)
+g 글로버
+
+. 한글자
+
+.. 두글자
+
++모든글자
+
+[] 여기 안아ㅔ 적은것들중에 선택
+
+[^여기안에 들어간 것은 제외]
+
+\s 공백
+
+\#[^\s#]+/g =># 뒤에 잇는 글자 공백과 다음 #전까지 찾는 정규표현
