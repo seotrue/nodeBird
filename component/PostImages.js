@@ -14,12 +14,14 @@ const PostImages = ({images}) => {
         setShowZoon(false)
     },[])
 
+    console.log(images,'images')
+
     // 이미지가 하나 있을때 2개 있을때 조건을 걸구 3개 이상이 되면 조건문에 안걸리고 리턴 로직으로 이동
     if(images.length === 1){
         return (
             <>
                 <img role="presentation" src={images[0].src} alt={images[0].src}  onClick={onZoom} />
-                { showZoon &&<ImageZoon />}
+                { showZoon &&<ImageZoon images ={images} onClose={onClose} />}
             </>
         )
     }
@@ -28,7 +30,7 @@ const PostImages = ({images}) => {
             <>
                 <img role="presentation" src={images[0].src} alt={images[0].src} style={{width:"50%"}} onClick={onZoom} />
                 <img role="presentation" src={images[1].src} alt={images[1].src} style={{width:"50%"}} onClick={onZoom} />
-                { showZoon && <ImageZoon />}
+                { showZoon &&<ImageZoon images ={images} onClose={onClose} />}
             </>
         )
     }
