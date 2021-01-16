@@ -1,7 +1,7 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import {Form,Input,Button} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {ADD_POST_REQUEST} from "../reducers/poster";
+import addPost from "../reducers/poster";
 
 const PostForm = ()  =>{
     const {imagePaths, addPostLoading,addPostDone} = useSelector((state)=>state.poster)
@@ -16,12 +16,14 @@ const PostForm = ()  =>{
     },[addPostDone])
 
     const onSubmit = useCallback(()=>{
-        dispatch({
-            type : ADD_POST_REQUEST,
-            data :{
-                text,
-            }
-        })
+        // dispatch({
+        //     type : ADD_POST_REQUEST,
+        //     data :{
+        //         text,
+        //     }
+        // })
+
+        dispatch(addPost(text))
     },[])
 
     const onChangeText = useCallback((e)=>{
