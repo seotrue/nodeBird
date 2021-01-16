@@ -59,6 +59,7 @@ useMemo와 useCallback 의 차이점
 5. 함수형 컴포넌트 리랜더링 :  함수부분이 리렌더링 되는데 이전 컴포넌트와 현재컴포넌트를 비교해서 바꾼 부분만 리렌더링
 6. 컴포넌트를 나누는 기준 : props 갯수가 많아지면 구분해서 컴포넌트를 나눠두 된다 
 
+## 유용한 것
 ### 커스텀훅
 1. 중복되는 부분을 커스텀 훅으로 빼준다.
 2. 리턴되는 부분을 주의하라!
@@ -66,8 +67,40 @@ useMemo와 useCallback 의 차이점
 ### 이미지 캐루셀
 
 ### saga
+1. yield 중단점
+2. all 함수를 함쳐준다
+3. 사가의 함수는 function 키워드 앞에 *를 붙여준다.
+4. throttle : 입력 시간 후에 요청을 받는다.
+5. takeLatest : 요청 2번이상 간 경우 맨 서버에서 마지막의 요청만 받는다
+6. put: 디스패치와 같은 역활
+ex)
+```$xslt
+    function* loadPosts(action) {
+      try {
+        // const result = yield call(loadPostsAPI, action.data);
+        yield delay(1000);
+        yield put({
+          type: LOAD_POSTS_SUCCESS,
+          data: generateDummyPost(10),
+        });
+      } catch (err) {
+        console.error(err);
+        yield put({
+          type: LOAD_POSTS_FAILURE,
+          data: err.response.data,
+        });
+      }
+    }
+```
+7. call : api 연동할때 쓰인다  
+ex)
+```$xslt
+// const result = yield call(loadPostsAPI, action.data);
 
-## 유용한 것
+function loadPostsAPI(data) {
+  return axios.get('/api/posts', data);
+}
+```
 ### 해시태크 링크 연결 (정규식 사용)
 - 해시태그 찾는 정규표현식 => /(#[^\s#]+)/g)
 - g 글로버
@@ -79,7 +112,9 @@ useMemo와 useCallback 의 차이점
 - \s 공백
 - \#[^\s#]+/g =># 뒤에 잇는 글자 공백과 다음 #전까지 찾는 정규표현
 ### immer
-
+> import produce from '../util/produce';
+- 알아서 불변성을 지켜준다
+1. draft은 리듀서 안에서 쓰는데 state(리듀서 안에서의) 역활을 한다.
 ### faker
 1. 가상 더미 데이터 
 
@@ -87,6 +122,8 @@ useMemo와 useCallback 의 차이점
 
 ### 리덕스 툴킷
 
-
+### shotID
+> import shortId from 'shortid';  
+1. 곂치치 않도록 알아서 id 값을 부여
 
 

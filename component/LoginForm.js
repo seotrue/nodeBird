@@ -3,10 +3,10 @@ import {Button, Form, Input} from 'antd'
 import styled from "styled-components";
 import Link from "next/link";
 
-import {useDispatch} from "react-redux";
-import {loginAction} from "../reducers/user";
+import {useDispatch, useSelector} from "react-redux";
 import useinput from "../hook/useinput";
 
+import { loginRequestAction } from '../reducers/user';
 
 // 스타일드 컴포넌트
 const ButtonWrapper = styled.div`
@@ -20,6 +20,7 @@ const FormWrapper = styled(Form)`
 const LoginForm = () =>{
     // 액션을 디스패치
     const dispatch = useDispatch();
+    const {logInLoading} = useSelector((state)=>state.user)
     const [id,onChangeId] = useinput('');
     const  [password,onChangePassword] = useinput('');
 
@@ -28,10 +29,7 @@ const LoginForm = () =>{
 
     const onSubmitForm = useCallback(()=>{
         console.log(id,password)
-        dispatch(loginAction({
-            id,
-            password,
-        }))
+        dispatch(loginRequestAction({ id, password }))
     } ,[id, password])
 
     // const style = useMemo({marginTop:'10px'},[])
@@ -55,7 +53,7 @@ const LoginForm = () =>{
                 />
             </div>
             <ButtonWrapper style={style}>
-                <Button type={"primary"} htmlType={'submit'} loading={false}>로그인</Button>
+                <Button type={"primary"} htmlType={'submit'} loading={logInLoading}>로그인</Button>
                 <Link href={'/signup'}><a>회원가입</a></Link>
             </ButtonWrapper>
 

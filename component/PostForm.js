@@ -1,18 +1,31 @@
 import React, {useCallback, useState} from 'react'
 import {Form,Input,Button} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {addPost} from "../reducers/poster";
+import {ADD_POST_REQUEST} from "../reducers/poster";
 
 const PostForm = ()  =>{
-    const {imagePaths} = useSelector((state)=>state.poster)
+    const {imagePaths, addPostLoading,addPostDone} = useSelector((state)=>state.poster)
     const [text,setText] = useState('')
     const dispatch = useDispatch()
 
+    useEffect(()=>{
+        // 만약 추가 완료 true 면 텍스트를 초기화
+        if(addPostDone){
+            setText('')
+        }
+    },[addPostDone])
+
+    const onSubmit = useCallback(()=>{
+        dispatch({
+            type : ADD_POST_REQUEST,
+            data :{
+                text,
+            }
+        })
+    },[])
+
     const onChangeText = useCallback((e)=>{
         setText(e.target.value)
-    },[])
-    const onSubmit = useCallback(()=>{
-        dispatch(addPost)
     },[])
 
     return(
@@ -26,7 +39,7 @@ const PostForm = ()  =>{
             <div>
                 <input type={'file'} multiple hidden />
                 <Button>이미지 업로드</Button>
-                <Button type="primary" style={{ float: 'right' }} htmlType={'submit'}>짹짹</Button>
+                <Button type="primary" style={{ float: 'right' }} htmlType={'submit'} loading={addPostLoading}>짹짹</Button>
             </div>
             <div>
                 {imagePaths.map((v)=>{
