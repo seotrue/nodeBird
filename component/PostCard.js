@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react'
 import { Card, Button, Avatar, Popover, List, Comment } from 'antd';
 import PropTypes from 'prop-types';
 import { RetweetOutlined, HeartTwoTone, HeartOutlined, MessageOutlined, EllipsisOutlined } from '@ant-design/icons';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Link from 'next/link';
 
 import PostImages from "./PostImages";
@@ -12,6 +12,8 @@ import PostCardContent from "./PostCardContent";
 import styled from 'styled-components';
 import FollowButton from "./FollowButton";
 
+
+import { REMOVE_POST_REQUEST } from '../reducers/post';
 const CardWrapper = styled.div`
   margin-bottom: 20px;
 `;

@@ -17,7 +17,7 @@ const configureStore = (context) => {
         );
 
     const store = createStore(reducer, enhancer);
-    store.sagaTask = sagaMiddleware.run(rootSaga)
+   store.sagaTask = sagaMiddleware.run(rootSaga)
     return store;
 };
 const wrapper = createWrapper(configureStore,{

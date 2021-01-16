@@ -6,7 +6,7 @@ import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 import useinput from "../hook/useinput";
 
-import { loginRequestAction } from '../reducers/user';
+import { LOG_IN_REQUEST} from '../reducers/user';
 
 // 스타일드 컴포넌트
 const ButtonWrapper = styled.div`
@@ -21,16 +21,18 @@ const LoginForm = () =>{
     // 액션을 디스패치
     const dispatch = useDispatch();
     const {logInLoading} = useSelector((state)=>state.user)
-    const [id,onChangeId] = useinput('');
+    const [email,onChangeId] = useinput('');
     const  [password,onChangePassword] = useinput('');
 
     const style = useMemo(()=>({  marginTop:'10px'}),[])
 
 
     const onSubmitForm = useCallback(()=>{
-        console.log(id,password)
-        dispatch(loginRequestAction({ id, password }))
-    } ,[id, password])
+        dispatch({
+            type: LOG_IN_REQUEST,
+            data: { email, password },
+        })
+    } ,[email, password])
 
     // const style = useMemo({marginTop:'10px'},[])
 
@@ -40,7 +42,7 @@ const LoginForm = () =>{
             <div>
                 <label htmlFor={'user-id'}>아이디</label>
                 <br/>
-                <Input  name='user-id' value={id} onChange={onChangeId} requied/>
+                <Input  name='user-id' value={email} onChange={onChangeId} requied/>
             </div>
             <div>
                 <label htmlFor={'user-password'}>비밀번호</label>

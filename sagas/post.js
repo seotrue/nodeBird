@@ -94,7 +94,21 @@ function* removePost(action) {
 function addCommentAPI() {
 
 }
-
+function* addComment(action) {
+    try {
+        // const result = yield call(addCommentAPI, action.data);
+        yield delay(1000);
+        yield put({
+            type: ADD_COMMENT_SUCCESS,
+            data: action.data,
+        });
+    } catch (err) {
+        yield put({
+            type: ADD_COMMENT_FAILURE,
+            data: err.response.data,
+        });
+    }
+}
 // 비동기 api를 받아온후 데이터를 액션에 맞게 대입해줌
 function* addComment() {
 
