@@ -17,6 +17,9 @@ const CardWrapper = styled.div`
 `;
 
 const PostCard = ({post})  =>{
+    const dispatch = useDispatch();
+    const { removePostLoading } = useSelector((state)=>state.post)
+
     //const  {id} = useSelector(state=> state.user.me?.id)// 옵셔널 체이닝 연산자
     const id = useSelector((state) => state.user.me && state.user.me.id);
     const [liked, setLiked] = useState(false)
@@ -28,6 +31,14 @@ const PostCard = ({post})  =>{
 
     const onToggleComment = useCallback(()=>{
         setCommentFormOpened((prev) => !prev)
+    },[])
+
+    const onRemovePost = useCallback(()=>{
+        // 액션 함수로 만들어서 액션 함수 호출해두 되구 그냥 객체에 데이터 넣어서 보내두 되구
+        dispatch({
+            type:REMOVE_POST_REQUEST,
+            data : post.id
+        })
     },[])
     return(
         <CardWrapper>
@@ -47,7 +58,7 @@ const PostCard = ({post})  =>{
                                     ? (
                                         <>
                                             <Button>수정</Button>
-                                            <Button type="danger">삭제</Button>
+                                            <Button type="danger" loading={ removePostLoading } onClick={onRemovePost}>삭제</Button>
                                         </>
                                     )
                                     : <Button>신고</Button>}
@@ -69,9 +80,9 @@ const PostCard = ({post})  =>{
                 <>
                     <CommentForm post={post} />
                     <List
-                        header={`${post.Comments.length}개의 댓글`}
+                        header={`${post.Comments ? post.Comments.length : 0}개의 댓글`}
                         itemLayout="horizontal"
-                        dataSource={post.Comments}
+                        dataSource={post.Comments || []}
                         renderItem={(item) => (
                             <li>
                                 <Comment

@@ -60,7 +60,7 @@ export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
-export const addPost = (data)({
+export const addPost = (data)=>({
     type:ADD_POST_REQUEST,
     data
 })
@@ -70,8 +70,7 @@ export const addComment = (data)=>({
     data
 })
 
-
-const dummyPost=(data) = ({
+const dummyPost=(data) => ({
     id: data.id,
     content: data.content,
     User: {
@@ -85,25 +84,68 @@ const dummyPost=(data) = ({
 // 이전 상태를 액션을 통해 다음 상태로 만들어내는 함수(불변성은 지키면서)
 // 1. draft은 리듀서 안에서 쓰는데 state(리듀서 안에서의) 역활을 한다. (immer 사용)
 // 2. immer 사용 시에는 break를 넣어준다.
-const reducer =   (state=initialState,action)=>(produce(state,(draft)=>{
+const reducer = (state = initialState, action) => produce(state, (draft) => {
     switch (action.type) {
-        case LOAD_POSTS_REQUEST :{
+        case LOAD_POSTS_REQUEST :
             // 요청이 시작이 되면 로딩은 트루
             draft.loadPostsLoading = true;
             draft.loadPostsDone = false;
             draft.loadPostsError = null;
             break;
-         case LOAD_POSTS_SUCCESS :
-
+        case LOAD_POSTS_SUCCESS :
             draft.loadPostsLoading = false;
             draft.loadPostsDone = true;
             draft.mainPosts =action.data.concat(draft.mainPosts);
             draft.hasMorePosts  =draft.length <50
             break;
+        case LOAD_POSTS_FAILURE:
+            draft.loadPostsLoading = false;
+            draft.loadPostsError = action.error;
+            break;
 
-        default :
-            return state
+        case ADD_POST_REQUEST :
+            draft.addPostLoading = true;
+            draft.addPostDone = false;
+            draft.addPostError = null;
+            break;
+        case ADD_POST_SUCCESS:
+            draft.addPostLoading = false;
+            draft.addPostDone = true;
+            draft.mainPosts.unshift(dummyPost(action.data)); // 새로운 포스트가 맨 위에 와야 하니깐 unshift
+            break;
+        case ADD_POST_FAILURE :
+            draft.addPostLoading = false;
+            draft.addPostError = action.error;
+            break;
+
+        case REMOVE_POST_REQUEST:
+            draft.removePostLoading = true;
+            draft.removePostDone = false;
+            draft.removePostError = null;
+            break;
+        case REMOVE_POST_SUCCESS:
+            draft.removePostLoading = false
+            draft.removePostDone=true;
+            draft.mainPosts = draft.mainPosts.filter((v)=> v.id!== action.id)
+            break;
+        case REMOVE_POST_FAILURE:
+            draft.removePostLoading = false;
+            draft.removePostError = action.error;
+            break;
+
+
+        case ADD_COMMENT_REQUEST:
+            break;
+        case ADD_COMMENT_SUCCESS: {
+            break;
         }
-    });
+        case ADD_COMMENT_FAILURE:
+            draft.addCommentLoading = false;
+            draft.addCommentError = action.error;
+            break;
+        default:
+            break;
+        }
+    })
 
 export default reducer;

@@ -10,7 +10,17 @@ import {
 
     ADD_POST_REQUEST,
     ADD_POST_SUCCESS,
-    ADD_POST_FAILURE, addPost,
+    ADD_POST_FAILURE,
+
+    REMOVE_POST_FAILURE,
+    REMOVE_POST_REQUEST,
+    REMOVE_POST_SUCCESS,
+
+    ADD_COMMENT_FAILURE,
+    ADD_COMMENT_SUCCESS,
+    ADD_COMMENT_REQUEST,
+
+    generateDummyPost
 } from '../reducers/poster'
 
 function loadPostAPI(data) {
@@ -56,6 +66,39 @@ function* addPost(action) {
         });
     }
 }
+function removePostAPI() {
+    return axios.delete('/api/post', data);
+}
+function* removePost(action) {
+    try {
+        //const result = yield call(removePostAPI,action.data)
+        yield delay(1000)
+        yield put({
+            type:REMOVE_POST_SUCCESS,
+            data:action.data
+        })
+        // 나의 계정에서 지워저라 나의 포스트를 삭제할 경우에
+        yield put({
+           // type: REMOVE_POST_OF_ME,
+            //data: action.data,
+        });
+    }catch (err) {
+        console.error(err);
+        yield put({
+            type: REMOVE_POST_FAILURE,
+            data: err.response.data,
+        });
+    }
+}
+
+function addCommentAPI() {
+
+}
+
+// 비동기 api를 받아온후 데이터를 액션에 맞게 대입해줌
+function* addComment() {
+
+}
 
 function* watchLoadPosts() {
     yield throttle(5000,LOAD_POSTS_REQUEST,loadPosts) // 5초뒤에 포스트 로딩 시작
@@ -66,11 +109,11 @@ function* watchAddPost() {
 }
 
 function* watchRemovePost() {
-    yield takeLatest
+    yield takeLatest(REMOVE_POST_REQUEST, removePost)
 }
-
+// 요청을 보내구
 function* watchAddComment() {
-    yield takeLatest
+    yield takeLatest(ADD_COMMENT_REQUEST, addComment)
 }
 
 
@@ -79,9 +122,9 @@ function* watchAddComment() {
 export  default  function* postSaga(){
     // all 합쳐준다.
     yield all([
-        fork()
-        fork()
-        fork()
-        fork()
+        fork(watchLoadPosts),
+        fork(watchAddPost),
+        fork(watchRemovePost),
+        fork(watchAddComment)
     ])
 }
