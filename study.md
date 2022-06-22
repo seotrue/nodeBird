@@ -137,3 +137,23 @@ g 글로버
 ->
 
 리두서 가서 해당 데이터의 값에 넣어준다
+
+### next.js
+- pages  폴더안에 파일들 개별적인 페이지로 만들(코드 스플릿팅)해줌: 라우팅을 따로 해줄 필요 없이 해당 폴더에 파일을 넣어준다
+
+####서버사이드 랜더링 사용하기 위해 넥스트 사용하기
+1. 서버사이드 메소드
+- getInitialProps: next 예전버전
+
+// 화면을 그리기전에 서버쪽에서 먼저 실행
+//매개 변수에 context 전달
+// 프론트 서버 -> 백서버 요청 
+```
+export const getServerSideProps = wrapper.getServerSideProps((context)=>{
+//리덕스가 데이터가 채워진 상태로 렌더링 된다
+context.store.dispatch({
+        type:
+    })
+})_
+````
+
